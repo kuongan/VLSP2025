@@ -1,0 +1,6 @@
+[submodule "src/external/unilm"]
+	path = src/external/unilm
+	url = https://github.com/kuongan/unilm.git
+[submodule "src/external/pecore"]
+	path = src/external/pecore
+	url = https://github.com/kuongan/perception_models.git
