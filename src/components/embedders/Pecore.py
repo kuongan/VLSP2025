@@ -1,6 +1,6 @@
 import torch
 from PIL import Image
-from base import BaseEmbedder
+from .base import BaseEmbedder
 from typing import List, Union
 import sys
 sys.path.append("src/external/pecore") 
@@ -52,12 +52,12 @@ class PEcore(BaseEmbedder):
         return joint_embedding
     
     
-# image_path = 'data/VLSP2025/law_db/images.fld/image231.png'
+# image_path = '000000039769.jpg'
 # model = PEcore(model_name='PE-Core-L14-336', pretrained=True)
 # print(model)
 # image_emb = model.embed_image(image_path)
-# query_emb = model.embed_query("traffic sign")   
-# multi_emb = model.embed_multimodal("people", image_path)
+# query_emb = model.embed_query("cat")   
+# multi_emb = model.embed_multimodal("cat", image_path)
 # print("Image Embedding:", image_emb.shape)
 # print("Query Embedding:", query_emb.shape)
 # print("Multimodal Embedding:", multi_emb.shape) 

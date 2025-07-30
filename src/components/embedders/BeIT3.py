@@ -1,4 +1,4 @@
-from base import BaseEmbedder
+from .base import BaseEmbedder
 from typing import List, Union
 import numpy as np
 from PIL import Image
@@ -6,9 +6,7 @@ import torch
 import torchvision.transforms as T
 from torch.nn import functional as F
 import timm
-import sys
-sys.path.append("src/external/unilm")
-import beit3.modeling_finetune  # type: ignore
+import src.external.unilm.beit3.modeling_finetune 
 from transformers import XLMRobertaTokenizer
 from timm.data.constants import IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD, IMAGENET_INCEPTION_MEAN, IMAGENET_INCEPTION_STD
 
@@ -100,19 +98,21 @@ class BeIT3(BaseEmbedder):
         return joint_cls
 
 
-model = BeIT3(model_name='beit3_base_patch16_224_fused',pretrained=True)
-print(model)
-image_url = r"tech.jpg"
-image_emb = model.embed_image(image_url)
-query_emb = model.embed_query("goldfish")
-multi_emb= model.embed_multimodal(
-    "goldfish",
-    image_url
-)
-print("Image Embedding:", image_emb.shape)
-print("Query Embedding:", query_emb.shape)
-print("Multimodal Embedding:", multi_emb.shape) 
-cosine = torch.nn.CosineSimilarity(dim=-1, eps=1e-6)
-print("Cosine Similarity (Image, Query):", cosine(image_emb, query_emb))
-print("Cosine Similarity (Image, Multimodal):", cosine(image_emb, multi_emb))
-print("Cosine Similarity (Query, Multimodal):", cosine(query_emb, multi_emb))
+# model = BeIT3(model_name='beit3_base_patch16_384_retrieval',pretrained=True,image_size = 384)
+# # 'http://images.cocodataset.org/val2017/000000039769.jpg'
+
+# image_url = r'000000039769.jpg'
+
+# image_emb = model.embed_image(image_url)
+# query_emb = model.embed_query("cat")
+# multi_emb= model.embed_multimodal(
+#     "cat",
+#     image_url
+# )
+# print("Image Embedding:", image_emb.shape)
+# print("Query Embedding:", query_emb.shape)
+# print("Multimodal Embedding:", multi_emb.shape) 
+# cosine = torch.nn.CosineSimilarity(dim=-1, eps=1e-6)
+# print("Cosine Similarity (Image, Query):", cosine(image_emb, query_emb))
+# print("Cosine Similarity (Image, Multimodal):", cosine(image_emb, multi_emb))
+# print("Cosine Similarity (Query, Multimodal):", cosine(query_emb, multi_emb))
