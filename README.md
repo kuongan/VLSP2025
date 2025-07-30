@@ -32,21 +32,22 @@ data
 ```bash
 git clone --recurse-submodules https://github.com/kuongan/VLSP2025.git
 ```
-1. Create conda environment:
+1. Install requirements:
+
+```bash
+conda env create -f environment.yaml -n vlsp
+conda activate vlsp
+```
+or 
 ```bash
 conda create -n vlsp python=3.10
 conda activate vlsp
-```
-
-2. Install requirements:
-```bash
 pip install -r requirements.txt
 ```
-
-or 
-
+2. Download checkpoint
 ```bash
-conda env create -f environment.yaml
-conda env create -f environment.yaml -n vlsp
-conda activate vlsp
+cd VLSP2025
+wget https://github.com/addf400/files/releases/download/beit3/beit3.spm
+mkdir -p checkpoint
+mv beit3.spm checkpoint/beit3.spm
 ```
